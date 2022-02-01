@@ -47,7 +47,7 @@ const Subscriptions = () => {
               <>
                   <figure className={styles.cart} key={subscription._id}>
                     <h2 className={styles.cart__img__title}>{subscription.name}</h2>
-                    <img src={`http://localhost:5000/${subscription.img}`} alt="" />
+                    <img src={`/${subscription.img}`} alt="" />
                     <figcaption>
                       <h3 className={styles.cart__price}>{subscription.price} ₽</h3>
                       <p>Абонемент на: {subscription.time / 3600 / 24} дней</p>
