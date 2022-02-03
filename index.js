@@ -1,12 +1,13 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors')
-const path = require('path')
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
-const app = express()
-const port = process.env.PORT
+const app = express();
+const port = process.env.PORT || 5000;
 
+<<<<<<< HEAD
 app.use(cors())
 app.use(express.json())
 app.use('/static', express.static(path.resolve(__dirname, 'static')));
@@ -15,18 +16,28 @@ app.use(express.static(path.resolve(__dirname,"Gym-client","build")))
 app.get("*", (req,res)=>{
   res.sendFile(path.resolve(__dirname,"Gym-client","build","index.html"));
 })
+=======
+app.use(cors());
+app.use(express.json());
+app.use("/static", express.static(path.resolve(__dirname, "static")));
+app.use(express.static(path.resolve(__dirname, "client", "build")));
+app.use(require("./routes"));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+>>>>>>> 7bf43c31443ce8f3166c212fd05ecb00e07b40d7
 
 const connected = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_SERVER)
-    console.log('Вы успешно подключились к MongoDB!');
-
+    await mongoose.connect(process.env.MONGO_SERVER);
+    console.log("Вы успешно подключились к MongoDB!");
     app.listen(port, () => {
-      console.log('Server has been started!');
-    })
+      console.log("Server has been started!");
+    });
   } catch (e) {
     console.log(e);
   }
-}
+};
 
-connected()
+connected();
